@@ -1,5 +1,27 @@
 'use strict'
 
+// let arr = [1, 2, 3];
+// arr.name = 'vova'
+// console.log(arr)
+//
+// for(let key in arr) {
+//     console.log(key, arr[key])
+// }
+
+
+//
+// let obj = {
+//     name: 'Vlad',
+//     func() {
+//         return this.name;
+//     }
+// }
+//
+// for (let key in  obj) {
+//     console.log(obj[key])
+// }
+
+
 // https://learn.javascript.ru/property-descriptors
 
 // Если говорить о свойствах объекта то помимо данных ключ - значение у них так-же
@@ -12,6 +34,13 @@
 
 // configurable – если true, свойство можно удалить, а эти атрибуты можно изменять,
 // иначе этого делать нельзя.
+
+// {
+//     "value": "Val",
+//     "writable": true,
+//     "enumerable": true,
+//     "configurable": true
+// }
 
 // Все они принимают булиевое true/false
 
@@ -44,6 +73,8 @@
 // в него какой-то флаг то он поумолчанию установится в false
 
 // let user = {};
+// user.age = 100;
+// user['gender'] = 'female';
 //
 // Object.defineProperty(user, "name", {
 //     value: "John",
@@ -52,15 +83,19 @@
 //
 // let descriptor = Object.getOwnPropertyDescriptor(user, 'name');
 //
+// console.log(user)
 // console.log(descriptor)
 
 
 // Примеры
-// Делаем свойтво объекта доступным для считываения но не изменения
+// Делаем свойcтво объекта доступным для считываения но не изменения
 
 // let user = {
 //     name: "John"
 // };
+//
+// // let descriptor = Object.getOwnPropertyDescriptor(user, 'name');
+// // console.log(descriptor)
 //
 // Object.defineProperty(user, "name", {
 //     writable: false
@@ -96,9 +131,9 @@
 // };
 //
 // // По умолчанию оба свойства выведутся:
-// for (let key in user) {
-//     console.log(key)    // name, toString
-// }
+// // for (let key in user) {
+// //     console.log(key, user[key])    // name, toString
+// // }
 //
 // console.log('--------enumerable flag changed---------')
 //
@@ -108,10 +143,12 @@
 // });
 //
 //
-// // В данном случае у нас из перебора исключен метод getName
+// // // В данном случае у нас из перебора исключен метод getName
 // for (let key in user) {
-//     console.log(key)    // name, toString
+//     console.log(key, user[key])    // name, toString
 // }
+
+
 
 
 // configurable - Неконфигурируемое свойство
@@ -120,7 +157,7 @@
 // Например Math.PI
 // let descriptor = Object.getOwnPropertyDescriptor(Math, 'PI');
 //
-// // Это значит что мы не можем его изменить
+// Это значит что мы не можем его изменить
 // console.log(descriptor);
 //
 // Math.PI = 3; // Ошибка
@@ -136,13 +173,13 @@
 //     writable: false,
 //     configurable: false
 // });
-//
-// // теперь невозможно изменить user.name или его флаги
-// // всё это не будет работать:
-// //   user.name = "Pete"
-// //   delete user.name
-// //   defineProperty(user, "name", ...)
-//
+
+// теперь невозможно изменить user.name или его флаги
+// всё это не будет работать:
+//   user.name = "Pete"
+//   delete user.name
+//   defineProperty(user, "name", ...)
+
 // Object.defineProperty(user, "name", {writable: true}); // Ошибка
 
 
@@ -154,8 +191,13 @@
 // let user = {};
 //
 // Object.defineProperties(user, {
-//     name: { value: "John", writable: false },
-//     surname: { value: "Smith", writable: false },
+//     name: { value: "John", writable: true },
+//     surname: {
+//         value: "Smith",
+//         writable: false,
+//         configurable: true,
+//         enumerable: true
+//     },
 // });
 //
 // console.log(user)
@@ -168,11 +210,15 @@
 // https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptors
 // Позволяет получить все дескрипторы свойств сразу,
 
-// let user = {};
+// let user = {
+//     value: 1
+// };
 //
 // Object.defineProperties(user, {
 //     name: { value: "John", writable: false },
 //     surname: { value: "Smith", writable: false },
 // });
+//
+// console.log(user)
 //
 // console.log(Object.getOwnPropertyDescriptors(user))

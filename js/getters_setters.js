@@ -20,7 +20,8 @@
 
 // let user = {
 //     name: "Vladimir",
-//     surname: "Shaitan"
+//     surname: "Shaitan",
+//     fullName: "Vladimir Shaitan"
 // };
 
 // Для того чтобы не хранить третье свойство 'fullName' (это не нужно так как
@@ -32,10 +33,24 @@
 //
 //     get fullName() {
 //         return `${this.name} ${this.surname}`;
+//     },
+//
+//     getFullName() {
+//         return this.name + ' ' + this.surname
 //     }
 // };
 //
-// alert(user.fullName); // Vladimir Shaitan
+// user.name = 'vova';
+//
+// for(let key in user) {
+//     console.log(key, user[key])
+// }
+
+
+// console.log(user.fullName); // Vladimir Shaitan
+// console.log(user.getFullName()); // Vladimir Shaitan
+
+// console.log(user)
 
 
 // Если попробуем изменить свойство fullName то не получится, так как оно не хранится
@@ -46,24 +61,27 @@
 
 // А теперь делаем чтобы работало создаем сеттер
 
-//
-// let user = {
-//     name: "Vladimir",
-//     surname: "Shaitan",
-//
-//     get fullName() {
-//         return `${this.name} ${this.surname}`;
-//     },
-//
-//     set fullName(value) {
-//         this.name = value.split(" ")[0];
-//         this.surname = value.split(" ")[0];
-//         // [this.name, this.surname] = value.split(" ");
-//     }
-// };
-//
-// // set fullName запустится с данным значением
-// user.fullName = "Alice Cooper";
-//
-// alert(user.name); // Alice
-// alert(user.surname); // Cooper
+
+let user = {
+    name: "Vladimir",
+    surname: "Shaitan",
+
+    get fullName() {
+        return `${this.name} ${this.surname}`;
+    },
+
+    set fullName(value) {
+
+        // console.log(value)
+        this.name = value.split(" ")[0];
+        this.surname = value.split(" ")[1];
+        // [this.name, this.surname] = value.split(" ");
+    }
+};
+
+// set fullName запустится с данным значением
+user.fullName = "Alice Cooper";
+
+console.log(user.name); // Alice
+console.log(user.surname); // Cooper
+console.log(user.fullName); // Alice Cooper

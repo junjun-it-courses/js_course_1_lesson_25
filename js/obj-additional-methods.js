@@ -2,7 +2,7 @@
 // Помимо работы с определенными свойствами объекта, бывает такое что нам
 // нужно работать с настройками самомго объекта
 
-let Person = {
+const Person = {
     firstName: 'Vlad',
     lastName: 'Shaitan',
     getFirstName() {
@@ -39,7 +39,7 @@ let Person = {
 // https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze
 
 // Object.freeze(Person);
-//
+
 // delete  Person.getFirstName;             // error
 // Person.name = 'Сын собаки';              // error
 // Person.middleName = 'Sergeevich';        // error
@@ -49,6 +49,7 @@ let Person = {
 // Для проверки объекта на ограничения которое могут быть заданы предыдущими методами
 
 // Object.isExtensible(obj) - Возвращает false, если добавление свойств запрещено, иначе true.
+// https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Object/isExtensible
 
 // Object.preventExtensions(Person);
 // console.log(Object.isExtensible(Person))
